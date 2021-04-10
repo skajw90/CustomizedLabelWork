@@ -20,6 +20,8 @@
 		8758DADA26219825007BED51 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8758DAD926219825007BED51 /* UIColorExtension.swift */; };
 		8758DADF26219DD6007BED51 /* JWWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8758DADE26219DD6007BED51 /* JWWebViewController.swift */; };
 		8758DAE226219E4E007BED51 /* JWWebViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8758DAE126219E4E007BED51 /* JWWebViewExtensions.swift */; };
+		8758DAE92621DA14007BED51 /* JWTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8758DAE82621DA14007BED51 /* JWTextView.swift */; };
+		8758DAEC2621DA37007BED51 /* JWLabelTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8758DAEB2621DA37007BED51 /* JWLabelTestExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		8758DAD926219825007BED51 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8758DADE26219DD6007BED51 /* JWWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWWebViewController.swift; sourceTree = "<group>"; };
 		8758DAE126219E4E007BED51 /* JWWebViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWWebViewExtensions.swift; sourceTree = "<group>"; };
+		8758DAE82621DA14007BED51 /* JWTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTextView.swift; sourceTree = "<group>"; };
+		8758DAEB2621DA37007BED51 /* JWLabelTestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWLabelTestExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,16 +74,15 @@
 		8758DAAB26206F22007BED51 /* JWLabelPractice */ = {
 			isa = PBXGroup;
 			children = (
+				8758DAE72621DA08007BED51 /* JWTextView */,
+				8758DAE52621D9D6007BED51 /* Main */,
 				8758DADD26219DC0007BED51 /* JWWebView */,
 				8758DACF2621979A007BED51 /* JWLabel */,
 				8758DAAC26206F22007BED51 /* AppDelegate.swift */,
-				8758DAC826217C89007BED51 /* JWLabelTestViewModel.swift */,
-				8758DAB026206F22007BED51 /* JWLabelTestViewController.swift */,
 				8758DAB826206F24007BED51 /* Assets.xcassets */,
 				8758DABA26206F24007BED51 /* LaunchScreen.storyboard */,
 				8758DABD26206F24007BED51 /* Info.plist */,
 				8758DAB526206F22007BED51 /* JWLabelPractice.xcdatamodeld */,
-				8758DACC262183C1007BED51 /* JWLabelTestTableViewCell.swift */,
 			);
 			path = JWLabelPractice;
 			sourceTree = "<group>";
@@ -102,6 +105,25 @@
 				8758DAE126219E4E007BED51 /* JWWebViewExtensions.swift */,
 			);
 			path = JWWebView;
+			sourceTree = "<group>";
+		};
+		8758DAE52621D9D6007BED51 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8758DAC826217C89007BED51 /* JWLabelTestViewModel.swift */,
+				8758DAB026206F22007BED51 /* JWLabelTestViewController.swift */,
+				8758DACC262183C1007BED51 /* JWLabelTestTableViewCell.swift */,
+				8758DAEB2621DA37007BED51 /* JWLabelTestExtensions.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		8758DAE72621DA08007BED51 /* JWTextView */ = {
+			isa = PBXGroup;
+			children = (
+				8758DAE82621DA14007BED51 /* JWTextView.swift */,
+			);
+			path = JWTextView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,7 +195,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8758DAE92621DA14007BED51 /* JWTextView.swift in Sources */,
 				8758DAE226219E4E007BED51 /* JWWebViewExtensions.swift in Sources */,
+				8758DAEC2621DA37007BED51 /* JWLabelTestExtensions.swift in Sources */,
 				8758DAD4262197D3007BED51 /* JWTextAttributeDataSource.swift in Sources */,
 				8758DAD7262197EE007BED51 /* JWUnderlineLayoutManager.swift in Sources */,
 				8758DADF26219DD6007BED51 /* JWWebViewController.swift in Sources */,
