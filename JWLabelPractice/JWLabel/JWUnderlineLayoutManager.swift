@@ -6,11 +6,15 @@
 
 import UIKit
 
+/// Custom line layout manager
 class JWUnderlineLayoutManager: NSLayoutManager {
     
     static let JWUnderLineStyle = 0x11
     static let JWBackgroundStyle = 0x12
     
+    
+    /// Draw custom underline
+    /// - Parameter rect: CGRect
     private func drawOhaUnderlineForRect(_ rect: CGRect) {
         let test = CGRect(x: rect.minX, y: rect.maxY - (rect.height / 4), width: rect.width, height: (rect.height / 4))
         let path = UIBezierPath(roundedRect: test, cornerRadius: 0)
@@ -18,7 +22,11 @@ class JWUnderlineLayoutManager: NSLayoutManager {
         path.fill()
     }
     
-    private func drawOhaBackgroundForRect(_ rect: CGRect, _ color: UIColor) {
+    /// Draw custom background for view
+    /// - Parameters:
+    ///   - rect: background rect
+    ///   - color: background color
+    private func drawCustomBackgroundForRect(_ rect: CGRect, _ color: UIColor) {
         let path = UIBezierPath(roundedRect: rect, cornerRadius: 0)
         color.setFill()
         path.fill()
@@ -48,7 +56,7 @@ class JWUnderlineLayoutManager: NSLayoutManager {
                 let boundingRect = self.boundingRect(forGlyphRange: glyphRange, in: container)
                 let offsetRect = boundingRect.offsetBy(dx: containerOrigin.x, dy: containerOrigin.y)
                 
-                drawOhaBackgroundForRect(offsetRect, backgroundColor)
+                drawCustomBackgroundForRect(offsetRect, backgroundColor)
             }
         }
         else {

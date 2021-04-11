@@ -51,14 +51,24 @@ class JWLabelTestViewController: UIViewController {
         setConstraints()
         setNavigationBarProperties()
         configuration()
+        textView.text = "<cbu>밑줄</cbu>\n<b>볼드</b>\n<bl>블루</bl>\n<pp>보라</pp>\n<bgb>백그라운드 블루</bgb>"
+        
+        viewModel.userInputBuffer = textView.text
     }
     
+    /// Configuration set
+    private func configuration() {
+        textView.thresholdHeight = view.bounds.height / 4
+    }
+    
+    /// submit button touch handler
     @objc private func submitButtonTouchUpInside() {
         viewModel.addUserInputToList(
             completion: { [weak self] in
                 guard let self = self else { return }
                 self.textView.text = nil
                 self.textView.endEditing(true)
+                self.textView.layoutIfNeeded()
                 
             }, listUpdated: {
                 DispatchQueue.main.async {
@@ -67,16 +77,14 @@ class JWLabelTestViewController: UIViewController {
             })
     }
     
-    private func configuration() {
-        textView.thresholdHeight = view.bounds.height / 4
-    }
-
+    /// set navigation bar properties
     private func setNavigationBarProperties() {
         title = "JWLabel Tester"
         view.backgroundColor = .lightGray
         navigationController?.navigationBar.backgroundColor = .white
     }
     
+    /// set views constraints
     private func setConstraints() {
         let textViewWrapper = UIView()
         textViewWrapper.translatesAutoresizingMaskIntoConstraints = false

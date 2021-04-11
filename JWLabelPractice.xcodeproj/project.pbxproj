@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8758DAAD26206F22007BED51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8758DAAC26206F22007BED51 /* AppDelegate.swift */; };
 		8758DAB126206F22007BED51 /* JWLabelTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8758DAB026206F22007BED51 /* JWLabelTestViewController.swift */; };
-		8758DAB726206F22007BED51 /* JWLabelPractice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8758DAB526206F22007BED51 /* JWLabelPractice.xcdatamodeld */; };
 		8758DAB926206F24007BED51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8758DAB826206F24007BED51 /* Assets.xcassets */; };
 		8758DABC26206F24007BED51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8758DABA26206F24007BED51 /* LaunchScreen.storyboard */; };
 		8758DAC926217C89007BED51 /* JWLabelTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8758DAC826217C89007BED51 /* JWLabelTestViewModel.swift */; };
@@ -28,7 +27,6 @@
 		8758DAA926206F22007BED51 /* JWLabelPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JWLabelPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8758DAAC26206F22007BED51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8758DAB026206F22007BED51 /* JWLabelTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWLabelTestViewController.swift; sourceTree = "<group>"; };
-		8758DAB626206F22007BED51 /* JWLabelPractice.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JWLabelPractice.xcdatamodel; sourceTree = "<group>"; };
 		8758DAB826206F24007BED51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8758DABB26206F24007BED51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8758DABD26206F24007BED51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,14 +73,13 @@
 			isa = PBXGroup;
 			children = (
 				8758DAE72621DA08007BED51 /* JWTextView */,
-				8758DAE52621D9D6007BED51 /* Main */,
 				8758DADD26219DC0007BED51 /* JWWebView */,
 				8758DACF2621979A007BED51 /* JWLabel */,
+				8758DAE52621D9D6007BED51 /* Main */,
 				8758DAAC26206F22007BED51 /* AppDelegate.swift */,
 				8758DAB826206F24007BED51 /* Assets.xcassets */,
 				8758DABA26206F24007BED51 /* LaunchScreen.storyboard */,
 				8758DABD26206F24007BED51 /* Info.plist */,
-				8758DAB526206F22007BED51 /* JWLabelPractice.xcdatamodeld */,
 			);
 			path = JWLabelPractice;
 			sourceTree = "<group>";
@@ -112,8 +109,8 @@
 			children = (
 				8758DAC826217C89007BED51 /* JWLabelTestViewModel.swift */,
 				8758DAB026206F22007BED51 /* JWLabelTestViewController.swift */,
-				8758DACC262183C1007BED51 /* JWLabelTestTableViewCell.swift */,
 				8758DAEB2621DA37007BED51 /* JWLabelTestExtensions.swift */,
+				8758DACC262183C1007BED51 /* JWLabelTestTableViewCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -201,7 +198,6 @@
 				8758DAD4262197D3007BED51 /* JWTextAttributeDataSource.swift in Sources */,
 				8758DAD7262197EE007BED51 /* JWUnderlineLayoutManager.swift in Sources */,
 				8758DADF26219DD6007BED51 /* JWWebViewController.swift in Sources */,
-				8758DAB726206F22007BED51 /* JWLabelPractice.xcdatamodeld in Sources */,
 				8758DADA26219825007BED51 /* UIColorExtension.swift in Sources */,
 				8758DAB126206F22007BED51 /* JWLabelTestViewController.swift in Sources */,
 				8758DAC926217C89007BED51 /* JWLabelTestViewModel.swift in Sources */,
@@ -401,19 +397,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		8758DAB526206F22007BED51 /* JWLabelPractice.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				8758DAB626206F22007BED51 /* JWLabelPractice.xcdatamodel */,
-			);
-			currentVersion = 8758DAB626206F22007BED51 /* JWLabelPractice.xcdatamodel */;
-			path = JWLabelPractice.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 8758DAA126206F22007BED51 /* Project object */;
 }

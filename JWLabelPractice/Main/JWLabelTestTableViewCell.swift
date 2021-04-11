@@ -93,6 +93,7 @@ class JWLabelTestTableViewCell: UITableViewCell {
         // horizontal only
         let state = gesture.state
         let velocity = gesture.velocity(in: contentView).x
+        if abs(velocity) < abs(gesture.velocity(in: contentView).y) { return }
         let threshold: CGFloat = 500
         let removingTriggerThreshold: CGFloat = 1000
         if state == .ended {

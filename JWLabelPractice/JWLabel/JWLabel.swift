@@ -5,9 +5,17 @@
 //
 
 import UIKit
+// MARK: - Constant
 let JW_LINE_SPACING: CGFloat = 2
 var font_increment: CGFloat = 0
 
+/// JWLabel
+///
+/// label text attribution affected by user input with specific code set.
+///
+/// customized values will be detected, and affect attribution to this label.
+///
+/// You can set specific attributions in JWTextAttributeDataSource
 class JWLabel: UILabel {
     
     lazy var storage: NSTextStorage = {
@@ -16,13 +24,19 @@ class JWLabel: UILabel {
     } ()
     
     let layoutManager = JWUnderlineLayoutManager()
+    
+    /// link touch enable property
+    ///
+    /// if true, touching link navigate to webview with link url
     var linkEnabled: Bool = false {
         didSet {
             isUserInteractionEnabled = linkEnabled
         }
     }
     
+    /// line spacing between each line
     var customLineSpacing: CGFloat = JW_LINE_SPACING
+    
     /// list of url range in text
     private var urlRanges: [NSRange]?
     
@@ -35,6 +49,7 @@ class JWLabel: UILabel {
         return container
     } ()
     
+    // MARK: - Override Properties
     override init(frame: CGRect) {
         super.init(frame: frame)
         isUserInteractionEnabled = false
@@ -122,6 +137,7 @@ class JWLabel: UILabel {
         layoutManager.drawGlyphs(forGlyphRange: glyphRange, at: textOffset)
     }
     
+    /// remove all properties for reuse
     func prepareForReuse() {
         urlRanges = nil
         attributedText = nil
@@ -133,6 +149,9 @@ class JWLabel: UILabel {
         }
     }
     
+    // MARK: - set Attribution
+    /// Main Call for set attributed text in label
+    /// - Parameter text: user input text
     func setJWAttributedText(text: String?) {
         guard let text = text else {
             prepareForReuse()
@@ -143,9 +162,13 @@ class JWLabel: UILabel {
         attributedText = attr
     }
     
+    // MARK: - Helper functions
+    
+    /// Get Text offset for glyph range
+    /// - Parameter glyphRange: range
+    /// - Returns: text offset
     private func textOffsetForGlyphRange(glyphRange: NSRange) -> CGPoint {
         var textOffset: CGPoint = .zero
-        
         let textBounds = layoutManager.boundingRect(forGlyphRange: glyphRange, in: container)
         let paddingHeight = (bounds.size.height - textBounds.size.height) / 2.0
         if paddingHeight > 0 {
@@ -153,7 +176,9 @@ class JWLabel: UILabel {
         }
         return textOffset
     }
-
+    
+    /// set container size
+    /// - Parameter rect: frame, bounds, or maxwidth
     private func setContainerSize(rect: CGRect) {
         var size = rect.size
         size.width = min(size.width, self.preferredMaxLayoutWidth)
@@ -161,7 +186,9 @@ class JWLabel: UILabel {
         container.size = size
     }
     
-    @objc func urlTapped(gesture: UITapGestureRecognizer) {
+    /// Url tap gesture handler
+    /// - Parameter gesture: tap gesture recognizer
+    @objc private func urlTapped(gesture: UITapGestureRecognizer) {
         guard let urlRanges = urlRanges, let text = text else { return }
         for range in urlRanges {
             guard let textRange = Range(range, in: text) else { return }
@@ -172,14 +199,25 @@ class JWLabel: UILabel {
                 let controller = JWWebViewController()
                 controller.setNavigationBarTitle(title: "JW Label Link")
                 controller.urlString = String(text[textRange])
+                // if navigation view controller
                 if let topVC = UIApplication.topViewController() {
                     topVC.navigationController?.pushViewController(controller, animated: true)
+                }
+                // TODO: - else modal view controller
+                else {
+                    
                 }
                 return
             }
         }
     }
     
+    /// set attribution
+    /// - Parameters:
+    ///   - text: user input
+    ///   - baseFont: common font for all
+    ///   - baseColor: common text color for all
+    /// - Returns: mutable attributed string
     private func setOhaAttribution(text: String, baseFont: UIFont, baseColor: UIColor) -> NSMutableAttributedString {
         // set base font and color
         var output = text
@@ -225,12 +263,15 @@ class JWLabel: UILabel {
         return attributedString
     }
     
+    /// Detect attributions in text, and return the ranges of attribution in text
+    /// - Parameter text: ref user input, could be editible
+    /// - Returns: [AttributionCase : [NSRange]]
     private func getAttributionRanges(text: inout String) -> [AttributionCase : [NSRange]] {
         var attributionRanges: [AttributionCase : [NSRange]] = [:]
         var hasAttributed: Bool = false, fromStarted: Bool = false, toStarted: Bool = false
         var regexFrom: String = "", regexTo: String = "", affectedWord: String = ""
         for char in text {
-            if hasAttributed {
+            if hasAttributed {  // detect attribution end point
                 if char == "<" {
                     if toStarted { affectedWord += regexTo }
                     toStarted = true
@@ -270,6 +311,7 @@ class JWLabel: UILabel {
                 else { affectedWord += String(char) }
             }
             else {
+                // detect attribution start point
                 if char == "<" {
                     fromStarted = true
                     regexFrom = String(char)
@@ -288,6 +330,9 @@ class JWLabel: UILabel {
         return attributionRanges
     }
     
+    /// create attribution
+    /// - Parameter attr: attribution cse
+    /// - Returns:[NSAttributedString.Key : Any]
     private func getAttributedKey(attr: AttributionCase) -> [NSAttributedString.Key : Any] {
         var output: [NSAttributedString.Key : Any] = [:]
         // bold
@@ -313,18 +358,20 @@ class JWLabel: UILabel {
     }
 }
 
+
 extension UIFont {
-    static func ohaFont(ofSize: CGFloat, weight: UIFont.Weight = .regular) -> UIFont {
-        return UIFont.systemFont(ofSize: ofSize + font_increment, weight: weight)
-    }
-    
+    /// weight for the font
     var weight: UIFont.Weight {
         guard let weightNumber = traits[.weight] as? NSNumber else { return .regular }
         let weightRawValue = CGFloat(weightNumber.doubleValue)
         let weight = UIFont.Weight(rawValue: weightRawValue)
         return weight
     }
-
+    
+    static func customFont(ofSize: CGFloat, weight: UIFont.Weight = .regular) -> UIFont {
+        return UIFont.systemFont(ofSize: ofSize + font_increment, weight: weight)
+    }
+    
     private var traits: [UIFontDescriptor.TraitKey: Any] {
         return fontDescriptor.object(forKey: .traits) as? [UIFontDescriptor.TraitKey: Any]
             ?? [:]

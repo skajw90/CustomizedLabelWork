@@ -7,23 +7,33 @@
 
 import UIKit
 
+/// Self extendible TextView
+///
+/// Also has place holder property
 class JWTextView: UITextView, NSTextStorageDelegate {
-    var thresholdHeight: CGFloat?
+    // MARK: - Constant
     let MIN_HEIGHT_THRESHOLD: CGFloat = 16
+    
+    // MARK: - TextView Height Properties
+    private var minHeightConstraint: NSLayoutConstraint!
+    var thresholdHeight: CGFloat?
+    
+    // MARK: - placeholder Properties
     private var placeholderLeadingConstraint: NSLayoutConstraint!
     private var placeholderTrailingConstraint: NSLayoutConstraint!
     private var placeholderTopConstraint: NSLayoutConstraint!
-    private var minHeightConstraint: NSLayoutConstraint!
     var placeHolder: String = "" {
         didSet {
             placeholderLabel.text = placeHolder
         }
     }
+    
     var placeHolderTextColor: UIColor = .black {
         didSet {
             placeholderLabel.textColor = placeHolderTextColor
         }
     }
+    
     lazy var placeholderLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +41,8 @@ class JWTextView: UITextView, NSTextStorageDelegate {
         addSubview(label)
         return label
     } ()
+    
+    // MARK: - Overriding Properties
     
     override var text: String! {
         didSet {
@@ -75,10 +87,15 @@ class JWTextView: UITextView, NSTextStorageDelegate {
         }
     }
     
+    // MARK: - Helper functions
+    
+    /// Toggle placeholder visible or not
+    /// - Parameter isHidden: Bool
     func togglePlaceHolder(isHidden: Bool) {
         placeholderLabel.isHidden = isHidden
     }
     
+    /// set constraint for placeholder
     private func setPlaceholderConstraints() {
         minHeightConstraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .height, multiplier: 1, constant: font?.pointSize ?? (MIN_HEIGHT_THRESHOLD))
         placeholderLeadingConstraint = NSLayoutConstraint(item: placeholderLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: contentInset.left + textContainerInset.left + textContainer.lineFragmentPadding)

@@ -48,6 +48,7 @@ extension JWLabelTestViewController: UITextViewDelegate {
 extension JWLabelTestViewController: TestTableViewCellDelegate {
     func deleteCell(at row: Int, section: Int) {
         viewModel.removeUserInputList(section: section, row: row, completion: {
+            self.textView.text = nil
             self.tableView.performBatchUpdates({
                 self.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .right)
             }, completion: { _ in
